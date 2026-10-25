@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+/>
+    <script type="module" src="/js/index.js" defer>
+
+    </script>
+    <title>Task</title>
+</head>
+
+<body>
+    <h1 id="title">Todo-Today (<span id="today-date"></span>)</h1>
+    <div class="container">
+        <div class="add-task">
+            <div class="form">
+                <form action="/" method="POST" id='form'>
+                    <input type="hidden" id="hidden-value" name="date">
+                    <label for="name">Task name</label>
+                    <input type="text" name="name" placeholder="Enter a new task" required>
+                    <label for="description">Require</label>
+                    <textarea cols="25" rows="10" type="text" name="description" placeholder="Require"></textarea>
+                    <button id="add-btn">Add Task</button>
+                </form>
+            </div>
+            <div class="import-task">
+                <input type="date">
+                <button>Get Task</button>
+            </div>
+        </div>
+        <dialog id="edit-modal">
+            <i class="fa-solid fa-xmark" id="close-icon"></i>
+            <div class="edit-container">
+                <p class="edit-title">Edit</p>
+                <span class="task-order_edit"></span>
+            <form action="/update" method="post" class="edit-form">
+                <label for="name-edit">Task name</label>
+                <input type="text" id="name-edit" name="name-edit">
+                <label for="require-eidt">Require</label>
+                <textarea type="text" id="require-edit" cols="25" rows="10"></textarea>
+                <button class="save-edit">Save</button>
+            </form>
+            </div>
+        </dialog>
+        <div class="tasks">
+            <h1 id="task-list-title">Task List</h1>
+            <% tasks.forEach(task => {%>
+                <div class="task">
+                    <div class="finished"><%= task.finished %></div>
+                    <div class="task-content">
+                        <div class="task-title"><span class="task-order"><%= task.task_order %></span>. <span class="task-name"><%= task.task_name%></span></div>
+                        <p class="task-require">Require: <span class="task-description"><%= task.description%></span></p>
+                    </div>
+                    <div class="function">
+                        <button class="edit-btn">Edit</button>
+                        <button class="check-btn">Check</button>
+                        <button class="delete-btn">Delete</button>
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+    </div>
+</body>
+
+</html>
